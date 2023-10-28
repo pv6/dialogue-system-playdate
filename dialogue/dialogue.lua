@@ -63,9 +63,9 @@ function ds.Dialogue:updateNodes()
             self.nodes[curNode.id] = curNode
 
             for i, childNode in ipairs(curNode.children) do
-                assert(childNode:isA(DialogueNode))
+                assert(childNode:isa(ds.DialogueNode))
                 assert(not self.nodes[childNode.id])
-                nodeStack.insert(childNode)
+                table.insert(nodeStack, childNode)
             end
         end
     end
