@@ -16,6 +16,8 @@ end
 
 
 function ds.Storage:setData(newData)
+    newData = newData or {}
+
     self._data = table.shallowcopy(newData)
 
     local arrayCount, hashCount = table.getsize(self._data)
