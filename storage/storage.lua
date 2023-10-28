@@ -1,7 +1,7 @@
 import "CoreLibs/object"
 
 import "DialogueSystem/dialogueSystem"
-import "storageItem"
+import "DialogueSystem/storage/storageItem"
 
 
 local ds<const> = dialogueSystem

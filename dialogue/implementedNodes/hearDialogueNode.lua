@@ -1,7 +1,7 @@
 import "CoreLibs/object"
 
 import "DialogueSystem/dialogueSystem"
-import "DialogueSystem/dialogue/textDialogueNode"
+import "DialogueSystem/dialogue/implementedNodes/textDialogueNode"
 
 
 local ds<const> = dialogueSystem
