@@ -1,0 +1,3 @@
+dialogueSystem = {}
+
+return dialogueSystem

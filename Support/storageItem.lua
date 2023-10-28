@@ -1,27 +1,26 @@
 import "CoreLibs/object"
 
-
-class("StorageItem",
-    {
-        storage = {},
-        storageId = -1
-    },
-    dialogue
-)
+import "DialogueSystem/dialogueSystem"
 
 
-function dialogue.StorageItem:init(storage, storageId)
+local ds<const> = dialogueSystem
+
+
+class("StorageItem", {dummyId = -1}, ds).extends()
+
+
+function ds.StorageItem:init(storage, storageId)
     self.storage = storage
-    self.storgeId = storageId or -1
+    self.storageId = storageId or self.dummyId
 end
 
 
-function dialogue.StorageItem:__tostring()
+function ds.StorageItem:__tostring()
     return tostring(self:getValue())
 end
 
 
-function dialogue.StorageItem:__eq(other)
+function ds.StorageItem:__eq(other)
     if not other then
         return not storage
     end
@@ -29,7 +28,7 @@ function dialogue.StorageItem:__eq(other)
 end
 
 
-function dialogue.StorageItem:getValue()
+function ds.StorageItem:getValue()
     if not self.storage then
         return nil
     end
