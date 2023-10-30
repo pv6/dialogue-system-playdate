@@ -24,6 +24,8 @@ end
 
 
 function ds.DialoguePlayer:play(dialogue, actors, blackboards)
+    assert(dialogue)
+
     self._dialogue = dialogue
     self._actors = actors
     self._blackboards = blackboards
