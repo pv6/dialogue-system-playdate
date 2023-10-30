@@ -7,7 +7,7 @@ import "DialogueSystem/dialogue/dialogueNode"
 local ds<const> = dialogueSystem
 
 
-class("ReferenceDialogueNode", {jumpToMode = {startOfNode = 0, endOfNode = 1}}, ds).extends(ds.DialogueNode)
+class("ReferenceDialogueNode", {jumpToTypes = {startOfNode = 0, endOfNode = 1}}, ds).extends(ds.DialogueNode)
 
 
 function ds.ReferenceDialogueNode :init()

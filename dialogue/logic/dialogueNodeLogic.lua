@@ -11,8 +11,9 @@ class("DialogueNodeLogic", {}, ds).extends()
 
 
 function ds.DialogueNodeLogic:init()
-    flags = {}
-    autoFlags = {}
+    self.flags = {}
+    self.autoFlags = {}
+    self.useFlags = true
 end
 
 
@@ -25,9 +26,11 @@ function ds.DialogueNodeLogic:check(input)
     end
 
     -- check flags
-    for i, flag in ipairs(self.flags) do
-        if not flag:check(input) then
-            return false
+    if self.useFlags then
+        for i, flag in ipairs(self.flags) do
+            if not flag:check(input) then
+                return false
+            end
         end
     end
 
@@ -41,8 +44,10 @@ function ds.DialogueNodeLogic:doAction(input)
         autoFlag:doAction(input)
     end
 
-    for i, flag in ipairs(self.flags) do
-        assert(flag:isa(ds.ActionableDialogueFlag))
-        flag:doAction(input)
+    if self.useFlags then
+        for i, flag in ipairs(self.flags) do
+            assert(flag:isa(ds.ActionableDialogueFlag))
+            flag:doAction(input)
+        end
     end
 end
