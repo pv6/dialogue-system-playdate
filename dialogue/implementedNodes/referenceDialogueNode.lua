@@ -5,6 +5,7 @@ import "DialogueSystem/dialogue/dialogueNode"
 
 
 local ds<const> = dialogueSystem
+local string<const> = string
 
 
 class("ReferenceDialogueNode", {jumpToTypes = {startOfNode = 0, endOfNode = 1}}, ds).extends(ds.DialogueNode)

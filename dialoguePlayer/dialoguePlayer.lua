@@ -9,6 +9,8 @@ import "DialogueSystem/support/myTable"
 
 
 local ds<const> = dialogueSystem
+local table<const> = table
+local string<const> = string
 
 
 class("DialoguePlayer", {}, ds).extends()
@@ -38,12 +40,12 @@ function ds.DialoguePlayer:play(dialogue, actors, blackboards)
 
     self:_setCurNode(dialogue.rootNode)
 
-    -- emit 'playbackStarted' signal
+    -- TODO: emit 'playbackStarted' signal
 end
 
 
 function ds.DialoguePlayer:stop()
-    -- emit 'playbackEnded' signal
+    -- TODO: emit 'playbackEnded' signal
 end
 
 
@@ -55,16 +57,16 @@ function ds.DialoguePlayer:hear()
     -- find first valid child node
     for i, nextNode in ipairs(self:_getValidChildren(self._curNode.children)) do
         if nextNode:isa(ds.HearDialogueNode) then
-            -- first valid node:isa(ds.hear node
+            -- first valid node is hear node
             self:_setCurNode(nextNode)
             return self:_translateTextNode(nextNode)
         else
-            -- first valid node:isa(ds.not hear node
+            -- first valid node is not hear node
             return nil
         end
     end
 
-    -- no valid child nodes, dialogue:isa(ds.over
+    -- no valid child nodes, dialogue is over
     self:_setCurNode(nil)
     return nil
 end
@@ -81,7 +83,7 @@ function ds.DialoguePlayer:getSayOptions()
         -- find continuous valid say child nodes
         -- (non-valid say nodes don't break continuation)
         if nextNode:isa(ds.SayDialogueNode) then
-            table.insert(self:_translateTextNode(nextNode))
+            table.insert(output, self:_translateTextNode(nextNode))
             isContinuous = true
         -- only stop gathering say nodes, if encountered a valid non-say node
         elseif isContinuous then
@@ -94,13 +96,13 @@ end
 
 
 function ds.DialoguePlayer:canContinue()
-    return self._curNode and not #self:_getValidChildren(self._curNode.children) == 0
+    return self._curNode and #self:_getValidChildren(self._curNode.children) ~= 0
 end
 
 
 function ds.DialoguePlayer:say(sayOption)
     assert(self:_isSayOptionValid(sayOption))
-    self.self._curNode = self._dialogue.nodes[sayOption.id]
+    self._curNode = self._dialogue.nodes[sayOption.id]
 end
 
 
@@ -222,7 +224,8 @@ end
 
 function ds.DialoguePlayer:_isNodeValid(node)
     -- for reference nodes, check referenced node validity
-    if node:isa(ds.ReferenceDialogueNode) then
+    --if node:isa(ds.ReferenceDialogueNode) then
+    if Object.isa(node, ds.ReferenceDialogueNode) then
         return self:_isNodeValid(_dialogue.nodes[node.referenced_node_id])
     end
     return node.conditionLogic:check(self._logicInput)

@@ -7,6 +7,7 @@ import "DialogueSystem/storage/storage"
 
 
 local ds<const> = dialogueSystem
+local table<const> = table
 
 
 class("Dialogue", {}, ds).extends()

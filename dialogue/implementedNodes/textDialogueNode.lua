@@ -6,6 +6,7 @@ import "DialogueSystem/storage/storage"
 
 
 local ds<const> = dialogueSystem
+local string<const> = string
 
 
 class("TextDialogueNode", {}, ds).extends(ds.DialogueNode)

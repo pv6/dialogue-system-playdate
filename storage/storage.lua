@@ -5,6 +5,7 @@ import "DialogueSystem/storage/storageItem"
 
 
 local ds<const> = dialogueSystem
+local table<const> = table
 
 
 class("Storage", {}, ds).extends()

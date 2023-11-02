@@ -5,6 +5,8 @@ import "DialogueSystem/dialogue/logic/dialogueNodeLogic"
 
 
 local ds<const> = dialogueSystem
+local table<const> = table
+local string<const> = string
 
 
 class("DialogueNode", {dummyId = -1}, ds).extends()

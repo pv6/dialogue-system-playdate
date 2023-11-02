@@ -5,6 +5,7 @@ import "DialogueSystem/dialogue/dialogueNode"
 
 
 local ds<const> = dialogueSystem
+local string<const> = string
 
 
 class("RootDialogueNode", {}, ds).extends(ds.DialogueNode)
