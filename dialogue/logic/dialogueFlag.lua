@@ -10,7 +10,7 @@ class("DialogueFlag", {}, ds).extends()
 
 
 function ds.DialogueFlag:init()
-    value = true
+    self.value = true
 end
 
 

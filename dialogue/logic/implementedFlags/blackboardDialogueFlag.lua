@@ -27,7 +27,7 @@ end
 
 function ds.BlackboardDialogueFlag:getBlackboard()
     if self.blackboardField then
-        return blackboardField.storage
+        return self.blackboardField.storage
     end
     return nil
 end
@@ -35,12 +35,12 @@ end
 
 -- virtual
 function ds.BlackboardDialogueFlag:check(input)
-    local blackboard = self:getBlackboard()
-    return blackboard and input.blackboards:get(blackboard):get(self) == value
+    local blackboard<const> = self:getBlackboard()
+    return blackboard and input.blackboards:get(blackboard):get(self) == self.value
 end
 
 
 -- virtual
 function ds.BlackboardDialogueFlag:doAction(input)
-    input.blackboards:get(self:getBlackboard()):set(self, value)
+    input.blackboards:get(self:getBlackboard()):set(self, self.value)
 end

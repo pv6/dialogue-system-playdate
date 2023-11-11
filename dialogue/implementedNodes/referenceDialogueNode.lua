@@ -8,12 +8,12 @@ local ds<const> = dialogueSystem
 local string<const> = string
 
 
-class("ReferenceDialogueNode", {jumpToTypes = {startOfNode = 0, endOfNode = 1}}, ds).extends(ds.DialogueNode)
+class("ReferenceDialogueNode", {jumpToType = {startOfNode = 0, endOfNode = 1}}, ds).extends(ds.DialogueNode)
 
 
 function ds.ReferenceDialogueNode :init()
     ds.ReferenceDialogueNode.super.init(self)
-    self.jumpTo = self.jumpToMode.startOfNode
+    self.jumpTo = self.jumpToType.startOfNode
     self.referencedNodeId = self.dummyId
 end
 

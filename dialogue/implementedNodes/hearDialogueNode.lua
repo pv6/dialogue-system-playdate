@@ -11,7 +11,7 @@ local string<const> = string
 class("HearDialogueNode", {}, ds).extends(ds.TextDialogueNode)
 
 
-function ds.HearDialogueNode :init()
+function ds.HearDialogueNode:init()
     ds.HearDialogueNode.super.init(self)
 end
 

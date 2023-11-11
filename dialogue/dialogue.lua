@@ -10,7 +10,7 @@ local ds<const> = dialogueSystem
 local table<const> = table
 
 
-class("Dialogue", {}, ds).extends()
+class("Dialogue", {localBlackboardId = "-2"}, ds).extends()
 
 
 function ds.Dialogue:init()
@@ -70,4 +70,9 @@ function ds.Dialogue:updateNodes()
             end
         end
     end
+end
+
+
+function ds.Dialogue:getLocalBlackboard()
+    return self.blackboards:getItem(ds.Dialogue.localBlackboardId)
 end

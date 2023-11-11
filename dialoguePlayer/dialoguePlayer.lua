@@ -102,7 +102,7 @@ end
 
 function ds.DialoguePlayer:say(sayOption)
     assert(self:_isSayOptionValid(sayOption))
-    self._curNode = self._dialogue.nodes[sayOption.id]
+    self:_setCurNode(self._dialogue.nodes[sayOption.id])
 end
 
 
@@ -134,8 +134,8 @@ function ds.DialoguePlayer:_getValidChildren(children)
     for i, nextNode in ipairs(children) do
         if self:_isNodeValid(nextNode) then
             if nextNode:isa(ds.ReferenceDialogueNode) then
-                local referencedNode = self._dialogue.nodes[nextNode.referenced_node_id]
-                if nextNode.jumpTo == ds.ReferenceDialogueNode.jumpToTypes.startOfNode and not referencedNode:isa(ds.RootDialogueNode) then
+                local referencedNode = self._dialogue.nodes[nextNode.referencedNodeId]
+                if nextNode.jumpTo == ds.ReferenceDialogueNode.jumpToType.startOfNode and not referencedNode:isa(ds.RootDialogueNode) then
                     table.insert(output, referencedNode)
                 else
                     local referencedChildren = table.shallowcopy(referencedNode.children)
@@ -226,7 +226,7 @@ function ds.DialoguePlayer:_isNodeValid(node)
     -- for reference nodes, check referenced node validity
     --if node:isa(ds.ReferenceDialogueNode) then
     if Object.isa(node, ds.ReferenceDialogueNode) then
-        return self:_isNodeValid(_dialogue.nodes[node.referenced_node_id])
+        return self:_isNodeValid(self._dialogue.nodes[node.referencedNodeId])
     end
     return node.conditionLogic:check(self._logicInput)
 end

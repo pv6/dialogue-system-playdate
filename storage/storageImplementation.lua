@@ -39,6 +39,12 @@ function ds.StorageImplementation:getById(id)
 end
 
 
+function ds.StorageImplementation:has(item)
+    local name<const> = tostring(item)
+    return self._nameToId[name] ~= nil and self._idToValue[self._nameToId[name]] ~= nil
+end
+
+
 function ds.StorageImplementation:clear(clearValue)
     clearValue = clearValue or self.defaultValue
     for id, value in pairs(self._idToValue) do
@@ -57,5 +63,15 @@ function ds.StorageImplementation:setTemplate(newTemplate)
                 self._idToValue[id] = self.defaultValue
             end
         end
+    end
+end
+
+
+function ds.StorageImplementation:isValid(template)
+    for _, item in ipairs(template:items()) do
+        if not self:has(item) then
+            return false
+        end
+    return true
     end
 end

@@ -13,7 +13,9 @@ class("DialogueNodeLogic", {}, ds).extends()
 function ds.DialogueNodeLogic:init()
     self.flags = {}
     self.autoFlags = {}
+    self.script = ""
     self.useFlags = true
+    self.useScript = false
 end
 
 

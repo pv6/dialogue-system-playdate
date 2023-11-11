@@ -62,7 +62,8 @@ end
 
 -- virtual
 function ds.BasicDialoguePlayerRenderer:_setHearNode(hearNode)
-    gfx.drawText(hearNode.text, 0, 0)
+    local text = self:_getActorName(hearNode.speaker) .. ": " .. hearNode.text 
+    gfx.drawText(text, 0, 0)
 end
 
 

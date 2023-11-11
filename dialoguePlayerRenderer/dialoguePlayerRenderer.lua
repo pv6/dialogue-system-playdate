@@ -89,6 +89,10 @@ function ds.DialoguePlayerRenderer:_generateActorsImplementation(dialogueActors)
     for i, actorItem in ipairs(dialogueActors:items()) do
         local actor = {}
         actor.name = tostring(actorItem)
+        setmetatable(actor, actor)
+        function actor:__tostring()
+            return self.name
+        end
         actors:set(actorItem, actor)
     end
     return actors

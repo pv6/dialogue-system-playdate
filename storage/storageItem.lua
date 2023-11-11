@@ -32,5 +32,5 @@ function ds.StorageItem:getValue()
     if not self.storage then
         return nil
     end
-    return self.storage.getItem(self.storageItem)
+    return self.storage:getItem(self.storageId)
 end
